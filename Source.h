@@ -16,13 +16,11 @@ public:
     ~RadioactiveSource();
 
     std::string getSourceType() const;
-    std::string getAquisitionDate() const;
     double getActivity() const;
     int getSourceID() const;
 
     //setters
     void setSourceType(const std::string type);
-    void setAquisitionDate(const std::string date);
     void setActivity(double act);
 
     //display
