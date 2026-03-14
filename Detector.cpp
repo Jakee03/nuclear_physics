@@ -15,3 +15,16 @@ int RadiationDetector::detectRadiation(const RadioactiveSource source) {
     total_counts += counts;
     return counts;
 }
+
+//setters
+void RadiationDetector::turnOn() {
+    is_on = true;
+}
+
+void RadiationDetector::turnOff() {
+    is_on = false;
+}
+//getters
+int RadiationDetector::getTotalCounts() const {
+    return total_counts;
+}

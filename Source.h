@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 
+#ifndef SOURCE_H
+#define SOURCE_H
+
 class RadioactiveSource {
 private:
     std::string source_type;
@@ -26,3 +29,5 @@ public:
     //display
     void printSourceData() const;
 };
+
+#endif

@@ -1,6 +1,9 @@
 #include <string>
 #include "Source.h"
 
+#ifndef DETECTOR_H
+#define DETECTOR_H
+
 class RadiationDetector {
 private:
     std::string detector_type;
@@ -12,8 +15,10 @@ public:
     RadiationDetector(std::string type);
     ~RadiationDetector();
 
-    void turnOn() { is_on = true; }
-    void turnOff() { is_on = false; }
-
+    void turnOn();
+    void turnOff();
+    int getTotalCounts() const;
     int detectRadiation(const RadioactiveSource source);
 };
+
+#endif

@@ -23,3 +23,24 @@ void RadioactiveSource::printSourceData() const {
               << " | Activity: " << activity << " bq/kg" << std::endl;
 
 }
+//getters
+double RadioactiveSource::getActivity() const {
+    return activity;
+}
+
+std::string RadioactiveSource::getSourceType() const {
+    return source_type;
+}
+
+int RadioactiveSource::getSourceID() const {
+    return source_id;
+}
+
+//setters
+void RadioactiveSource::setSourceType(const std::string type) {
+    source_type = type;
+}
+
+void RadioactiveSource::setActivity(double act) {
+    activity = act;
+}
