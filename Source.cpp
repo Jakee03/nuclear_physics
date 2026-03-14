@@ -1,5 +1,6 @@
 #include "Source.h"
 #include <iostream>
+#include <stdexcept> //for exit if error
 
 //Initialise static memeber
 int RadioactiveSource::next_id = 1001;
@@ -43,9 +44,8 @@ void RadioactiveSource::setSourceType(const std::string& type) {
 
 void RadioactiveSource::setActivity(double act) {
     if (act < 0.0) {
-        std::cerr << "Activity cannot be negative. Setting to 0." << std::endl;
-        activity = 0.0;
-    } else {
-        activity = act;
+        throw std::invalid_argument("Error: Activity cannot be negative.");
     }
+    activity = act;
+    
 }
