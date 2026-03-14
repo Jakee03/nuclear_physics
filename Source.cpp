@@ -11,6 +11,9 @@ RadioactiveSource::RadioactiveSource() : source_type("Unknown"), acquisition_dat
 }
 //parametereised constructor
 RadioactiveSource::RadioactiveSource(const std::string& type, const std::string& date, double act) {
+    if (type.empty() || date.empty()) {
+        throw std::invalid_argument("Error: Source type and acquisition date cannot be empty.");
+    }
     source_type = type;
     acquisition_date = date;
     setActivity(act);
