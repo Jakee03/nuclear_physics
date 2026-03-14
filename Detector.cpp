@@ -17,6 +17,7 @@ long long RadiationDetector::detectRadiation(const RadioactiveSource& source) {
 
     //simulation logic
     double act = source.getActivity();
+    //randomisation of counts due to environmental factors and detector efficiency
     long long counts = static_cast<long long>(act * ((rand() % 10) + 1) / 100.0);
     total_counts += counts;
     return counts;
