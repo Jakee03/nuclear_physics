@@ -3,7 +3,12 @@
 #include <cstdlib> //for rand()
 
 RadiationDetector::RadiationDetector(const std::string& type)
-    : detector_type(type), is_on(false), total_counts(0) {}
+    : detector_type(type), is_on(false), total_counts(0) {
+
+    if (type.empty()) {
+        throw std::invalid_argument("Error: Detector type cannot be empty.");
+    }
+}
 
 RadiationDetector::~RadiationDetector() {}
 

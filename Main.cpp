@@ -4,6 +4,7 @@
 #include <cstdlib> //for rand()
 #include <fstream> //file reading
 #include <sstream> //for strings 
+#include <iomanip> //for formatting output
 #include "Source.h"
 #include "Detector.h"
 
@@ -63,7 +64,8 @@ int main() {
     for (const auto& src : sources) {
         src.printSourceData();
         long long counts = myDetector.detectRadiation(src);
-        std::cout << "Detected Counts: " << static_cast<double>(counts) << "\n" << std::endl;
+        std::cout << "Detected Counts: " << std::setprecision(2)
+        <<static_cast<double>(counts) << "\n" << std::endl;
     }
 
     return 0;
