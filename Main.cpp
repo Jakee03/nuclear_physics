@@ -38,35 +38,39 @@ int main() {
     }
 
     //power on detector
-    RadiationDetector myDetector(detectorName);
-    myDetector.turnOn();
+    try{
+        RadiationDetector myDetector(detectorName);
+        myDetector.turnOn();
 
-    //read source data
-    while (std::getline(configFile, line)) {
-        if (line.empty()) continue; // Skip empty lines
+        //read source data
+        while (std::getline(configFile, line)) {
+            if (line.empty()) continue; // Skip empty lines
 
-        std::istringstream iss(line);
-        std::string type, date;
-        double activity;
+            std::istringstream iss(line);
+            std::string type, date;
+            double activity;
 
-        if (iss >> type >> date >> activity) {
-            try {
-                sources.push_back(RadioactiveSource(type, date, activity));
-            } catch (const std::invalid_argument& e) {
-                std::cerr << "Skipping invalid entry in config file: " << e.what() << std::endl;
+            if (iss >> type >> date >> activity) {
+                try {
+                    sources.push_back(RadioactiveSource(type, date, activity));
+                } catch (const std::invalid_argument& e) {
+                    std::cerr << "Skipping invalid entry in config file: " << e.what() << std::endl;
+                }
             }
         }
-    }
-    configFile.close();
+        configFile.close();
 
-    //detect radiation from each source
-    std::cout<< "--- Starting Lab Measurements using: " << detectorName << " ---" << std::endl;
-    for (const auto& src : sources) {
-        src.printSourceData();
-        long long counts = myDetector.detectRadiation(src);
-        std::cout << "Detected Counts: " << std::scientific << std::setprecision(3)
-        << static_cast<double>(counts) << "\n" << std::endl;
+        //detect radiation from each source
+        std::cout<< "--- Starting Lab Measurements using: " << detectorName << " ---" << std::endl;
+        for (const auto& src : sources) {
+            src.printSourceData();
+            long long counts = myDetector.detectRadiation(src);
+            std::cout << "Detected Counts: " << std::scientific << std::setprecision(3)
+            << static_cast<double>(counts) << "\n" << std::endl;
+        }
+    } catch (const std::invalid_argument& e) {
+        std::cerr << "Error initializing detector: " << e.what() << std::endl;
+        return 1;
     }
-
     return 0;
 }
