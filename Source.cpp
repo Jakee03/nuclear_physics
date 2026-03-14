@@ -46,8 +46,11 @@ void RadioactiveSource::setSourceType(const std::string& type) {
 }
 
 void RadioactiveSource::setActivity(double act) {
-    if (act < 0.0) {
+    if (act < 0) {
         throw std::invalid_argument("Error: Activity cannot be negative.");
+    }
+    if (act > 1e18) {
+        throw std::invalid_argument("Error: Activity exceeds simulation limits.");
     }
     activity = act;
     

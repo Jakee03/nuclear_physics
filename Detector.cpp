@@ -7,11 +7,12 @@ RadiationDetector::RadiationDetector(const std::string& type)
 
 RadiationDetector::~RadiationDetector() {}
 
-int RadiationDetector::detectRadiation(const RadioactiveSource& source) {
+long long RadiationDetector::detectRadiation(const RadioactiveSource& source) {
     if (!is_on) return 0; // No counts if the detector is off
 
     //simulation logic
-    int counts = static_cast<int>(source.getActivity() * (rand() % 10) / 100.0);
+    double act = source.getActivity();
+    long long counts = static_cast<long long>(act * (rand() % 10) / 100.0);
     total_counts += counts;
     return counts;
 }
@@ -25,6 +26,6 @@ void RadiationDetector::turnOff() {
     is_on = false;
 }
 //getters
-int RadiationDetector::getTotalCounts() const {
+long long RadiationDetector::getTotalCounts() const {
     return total_counts;
 }

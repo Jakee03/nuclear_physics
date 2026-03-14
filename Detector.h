@@ -8,7 +8,7 @@ class RadiationDetector {
 private:
     std::string detector_type;
     bool is_on;
-    int total_counts;
+    long long total_counts;
 
 public:
     //constructors and destructor
@@ -17,8 +17,8 @@ public:
 
     void turnOn();
     void turnOff();
-    int getTotalCounts() const;
-    int detectRadiation(const RadioactiveSource& source);
+    long long getTotalCounts() const;
+    long long detectRadiation(const RadioactiveSource& source);
 };
 
 #endif
