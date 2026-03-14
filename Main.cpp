@@ -22,10 +22,32 @@ int main() {
 
     //read source data from file
     std::string line;
+    
+    //check 1st line for name of detector
+    std::string detectorName;
+    if (std::getline(configFile, line)) {
+        std::istringstream iss(line);
+        if (!(iss >> detectorName)) {
+            std::cerr << "Error: First line of config file must contain the detector name." << std::endl;
+            return 1;
+        }
+    } else {
+        std::cerr << "Error: Config file is empty." << std::endl;
+        return 1;
+    }
+
+    //power on detector
+    RadiationDetector myDetector(detectorName);
+    myDetector.turnOn();
+
+    //read source data
     while (std::getline(configFile, line)) {
+        if (line.empty()) continue; // Skip empty lines
+
         std::istringstream iss(line);
         std::string type, date;
         double activity;
+
         if (iss >> type >> date >> activity) {
             try {
                 sources.push_back(RadioactiveSource(type, date, activity));
@@ -35,16 +57,13 @@ int main() {
         }
     }
     configFile.close();
-    //power on detector
-    RadiationDetector Geiger("Geiger");
-    Geiger.turnOn();
 
     //detect radiation from each source
-    std::cout<< "--- Starting Lab Measurements ---" << std::endl;
+    std::cout<< "--- Starting Lab Measurements using: " << detectorName << " ---" << std::endl;
     for (const auto& src : sources) {
         src.printSourceData();
-        long long counts = Geiger.detectRadiation(src);
-        std::cout << "Detected Counts: " << counts << "\n" << std::endl;
+        long long counts = myDetector.detectRadiation(src);
+        std::cout << "Detected Counts: " << static_cast<double>(counts) << "\n" << std::endl;
     }
 
     return 0;
