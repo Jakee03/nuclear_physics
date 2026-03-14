@@ -1,8 +1,8 @@
-#include <string>
-#include "Source.h"
-
 #ifndef DETECTOR_H
 #define DETECTOR_H
+
+#include <string>
+#include "Source.h"
 
 class RadiationDetector {
 private:

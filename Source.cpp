@@ -4,15 +4,15 @@
 //Initialise static memeber
 int RadioactiveSource::next_id = 1001;
 //default constructor
-RadioactiveSource::RadioactiveSource() : source_type("Unknown"), activity(0.0){
+RadioactiveSource::RadioactiveSource() : source_type("Unknown"), acquisition_date("Unknown"), activity(0.0){
     source_id = next_id++;
 
 }
 //parametereised constructor
 RadioactiveSource::RadioactiveSource(const std::string& type, const std::string& date, double act) {
     source_type = type;
-    aquisition_date = date;
-    activity = act;
+    acquisition_date = date;
+    setActivity(act);
     source_id = next_id++;
 }
 //Destructor
@@ -20,7 +20,7 @@ RadioactiveSource::~RadioactiveSource() {}
 //print data
 void RadioactiveSource::printSourceData() const {
     std::cout << "Source ID: " << source_id << " | Type: " << source_type
-              << " | Activity: " << activity << " bq/kg" << std::endl;
+              << " | Activity: " << activity << " Bq/kg" << std::endl;
 
 }
 //getters
@@ -42,5 +42,10 @@ void RadioactiveSource::setSourceType(const std::string& type) {
 }
 
 void RadioactiveSource::setActivity(double act) {
-    activity = act;
+    if (act < 0.0) {
+        std::cerr << "Activity cannot be negative. Setting to 0." << std::endl;
+        activity = 0.0;
+    } else {
+        activity = act;
+    }
 }
