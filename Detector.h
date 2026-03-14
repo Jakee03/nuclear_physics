@@ -12,13 +12,13 @@ private:
 
 public:
     //constructors and destructor
-    RadiationDetector(std::string type);
+    RadiationDetector(const std::string& type);
     ~RadiationDetector();
 
     void turnOn();
     void turnOff();
     int getTotalCounts() const;
-    int detectRadiation(const RadioactiveSource source);
+    int detectRadiation(const RadioactiveSource& source);
 };
 
 #endif

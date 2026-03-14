@@ -3,13 +3,13 @@
 
 //Initialise static memeber
 int RadioactiveSource::next_id = 1001;
-//constructors
+//default constructor
 RadioactiveSource::RadioactiveSource() : source_type("Unknown"), activity(0.0){
     source_id = next_id++;
 
 }
-
-RadioactiveSource::RadioactiveSource(std::string type, std::string date, double act) {
+//parametereised constructor
+RadioactiveSource::RadioactiveSource(const std::string& type, const std::string& date, double act) {
     source_type = type;
     aquisition_date = date;
     activity = act;
@@ -37,7 +37,7 @@ int RadioactiveSource::getSourceID() const {
 }
 
 //setters
-void RadioactiveSource::setSourceType(const std::string type) {
+void RadioactiveSource::setSourceType(const std::string& type) {
     source_type = type;
 }
 

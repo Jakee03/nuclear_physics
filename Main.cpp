@@ -16,7 +16,7 @@ int main() {
 
     //detect radiation from each source
     std::cout<< "--- Starting Lab Measurements ---" << std::endl;
-    for (const auto src : sources) {
+    for (const auto& src : sources) {
         src.printSourceData();
         int counts = Geiger.detectRadiation(src);
         std::cout << "Detected Counts: " << counts << std::endl;

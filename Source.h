@@ -15,7 +15,7 @@ private:
 public:
     //constructors and destructor
     RadioactiveSource();
-    RadioactiveSource(std::string type, std::string date, double act);
+    RadioactiveSource(const std::string& type, const std::string& date, double act);
     ~RadioactiveSource();
 
     std::string getSourceType() const;
@@ -23,7 +23,7 @@ public:
     int getSourceID() const;
 
     //setters
-    void setSourceType(const std::string type);
+    void setSourceType(const std::string& type);
     void setActivity(double act);
 
     //display
