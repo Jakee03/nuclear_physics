@@ -1,6 +1,6 @@
 To compile this program on a standard Linux/Unix terminal:
 
-g++ -o Assignment3 main.cpp Detector.cpp Source.cpp
+g++ -o Assignment3 Main.cpp Detector.cpp Source.cpp
 
 --------------------------------------------------------------------
 
